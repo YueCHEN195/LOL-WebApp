@@ -6,6 +6,7 @@ app.use(require('cors')())
 
 app.use(express.json())
 
+app.use('/public',express.static(__dirname + '/public'))
 
 require('./routes/admin/router.js')(app)
 

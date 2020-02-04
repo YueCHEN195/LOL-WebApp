@@ -1,17 +1,14 @@
 <template>
     <el-table :data="lists">
-      <el-table-column prop="img" label="图标">
-        <template slot-scope="scope">
-          <img :src="scope.row.img" style="height:3rem;">
-        </template>
-      </el-table-column>
-      <el-table-column prop="name" label="名称">
-      </el-table-column>
       <el-table-column prop="_id" label="ID">
       </el-table-column>
+      <el-table-column prop="title" label="标题">
+      </el-table-column>
+      <!-- <el-table-column prop="category.name" label="所属分类">
+      </el-table-column> -->
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="$router.push('/heroes/edit/' + scope.row._id)">查看/编辑</el-button>
+          <el-button type="primary" size="small" @click="$router.push('/articles/edit/' + scope.row._id)">编辑</el-button>
           <el-button type="danger" size="small" @click="del(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -27,17 +24,17 @@ export default {
   },
   methods: {
     async getLists(){
-      const res = await this.$http.get('manage/heroes')
+      const res = await this.$http.get('manage/articles')
       this.lists = res.data
     },
     async del(model){
       try{
-        await this.$confirm(`此操作将永久删除该${model.name}, 是否继续?`, '提示', {
+        await this.$confirm(`此操作将永久删除该${model.title}, 是否继续?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
         })
-        const res = await this.$http.delete('manage/heroes/' + model._id)
+        const res = await this.$http.delete('manage/articles/' + model._id)
         if(res.data.success){
           this.$message({
             type: 'success',

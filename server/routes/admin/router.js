@@ -36,7 +36,7 @@ module.exports = app => {
   })
 
   router.delete('/:id', async(req, res) => {
-    if(req.Model.modelName != 'Category'){
+    if(req.Model.modelName != 'Category'&&req.Model.modelName != 'Article'){  //不用删除文件的项目
       const model = await req.Model.findById(req.params.id)
       await unlink(`${__dirname}/../../public/img/${getUrlEnd(req.baseUrl)}/${getUrlEnd(model.img)}`)
     }

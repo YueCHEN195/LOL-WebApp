@@ -36,7 +36,7 @@ module.exports = app => {
   })
 
   router.delete('/:id', async(req, res) => {
-    if(req.Model.modelName != 'Category'&&req.Model.modelName != 'Article'){  //不用删除文件的项目
+    if(req.Model.modelName == 'Hero' || req.Model.modelName == 'Item' ){  //删除文件的项目
       const model = await req.Model.findById(req.params.id)
       await unlink(`${__dirname}/../../public/img/${getUrlEnd(req.baseUrl)}/${getUrlEnd(model.img)}`)
     }
@@ -70,5 +70,11 @@ module.exports = app => {
     const file = req.file
     file.url = `http://localhost:3000/public/img/${req.params.resource}/${file.filename}`
     res.send(file)
+  })
+
+  //login
+  app.post('/admin/api/login', async(req,res)=>{
+    const {username,password} = req.body
+     
   })
 }

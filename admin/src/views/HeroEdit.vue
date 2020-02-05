@@ -162,7 +162,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .form-container{
   width: 60vw;
   margin-left:3vw;

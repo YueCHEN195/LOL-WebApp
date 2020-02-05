@@ -9,10 +9,16 @@ import HeroEdit from '../views/HeroEdit.vue'
 import HeroList from '../views/HeroList.vue'
 import ArticleEdit from '../views/ArticleEdit.vue'
 import ArticleList from '../views/ArticleList.vue'
+import SwiperEdit from '../views/SwiperEdit.vue'
+import SwiperList from '../views/SwiperList.vue'
+import AdminUserEdit from '../views/AdminUserEdit.vue'
+import AdminUserList from '../views/AdminUserList.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {path: '/login',name:'login',component: Login},
   {
     path: '/',
     name: 'Main',
@@ -32,7 +38,15 @@ const routes = [
 
       {path: '/articles/create',component: ArticleEdit},
       {path: '/articles/list',component: ArticleList},
-      {path: '/articles/edit/:id',component: ArticleEdit, props: true}
+      {path: '/articles/edit/:id',component: ArticleEdit, props: true},
+
+      {path: '/swipers/create',component: SwiperEdit},
+      {path: '/swipers/list',component: SwiperList},
+      {path: '/swipers/edit/:id',component: SwiperEdit, props: true},
+
+      {path: '/adminusers/create',component: AdminUserEdit},
+      {path: '/adminusers/list',component: AdminUserList},
+      {path: '/adminusers/edit/:id',component: AdminUserEdit, props: true},
     ]
   },
 ]

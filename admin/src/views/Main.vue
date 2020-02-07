@@ -45,8 +45,8 @@
         <template slot="title"><i class="el-icon-message"></i>权限管理</template>
         <el-menu-item-group>
           <template slot="title">管理员</template>
-        <el-menu-item index="/adminusers/create">注册管理员</el-menu-item>
-        <el-menu-item index="/adminusers/list">管理员列表</el-menu-item>
+        <el-menu-item index="/admin_users/create">注册管理员</el-menu-item>
+        <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>

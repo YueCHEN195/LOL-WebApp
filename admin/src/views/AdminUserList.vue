@@ -6,7 +6,7 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="$router.push('/adminusers/edit/' + scope.row._id)">编辑</el-button>
+          <el-button type="primary" size="small" @click="$router.push('/admin_users/edit/' + scope.row._id)">编辑</el-button>
           <el-button type="danger" size="small" @click="del(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     async getLists(){
-      const res = await this.$http.get('manage/adminusers')
+      const res = await this.$http.get('manage/admin_users')
       this.lists = res.data
     },
     async del(model){
@@ -32,7 +32,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
         })
-        const res = await this.$http.delete('manage/adminusers/' + model._id)
+        const res = await this.$http.delete('manage/admin_users/' + model._id)
         if(res.data.success){
           this.$message({
             type: 'success',

@@ -27,7 +27,7 @@
 </template>
                                                                                                                                                  
 <script>
-import {VueEditor} from "vue2-editor"
+import { VueEditor } from "vue2-editor"   //vue2-editor": "^2.6.6" 最新版本出现无法调用handle函数的bug！！！！
 
 export default {
   props: {
@@ -39,21 +39,18 @@ export default {
   data(){
     return{
       model:{
-        category: ''
+        content:'',
+        category:''
       },
       articleCates:[]
     }
   },
   methods:{
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
-      // An example of using FormData
-      // NOTE: Your key could be different such as:
-      // formData.append('file', file)
-      var formData = new FormData();
-      formData.append("file", file)
-      const res = await this.$http.post('updata/articles',formData)
-      let url = res.data.url; // Get url from response
-      Editor.insertEmbed(cursorLocation, "image", url);
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await this.$http.post("upload/articles", formData);
+      Editor.insertEmbed(cursorLocation, "image", res.data.url);
       resetUploader();
     },
     async save(){
@@ -86,7 +83,7 @@ export default {
       this.getModelById()
     }
     this.getLists()
-  }
+  },
 }
 </script>
 

@@ -27,10 +27,16 @@ export default {
       }
     }
   },
-  method: {
+  methods: {
     async login(){
       const res = await this.$http.post('login',this.user)
-      console.log(res.data)
+      localStorage.token = res.data.token
+      this.$message({
+      message: '欢迎，' + res.data.nickname,
+      type:'success',
+      duration: 5000
+      })
+      this.$router.push('/')
     }
   }
 }

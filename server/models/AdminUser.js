@@ -12,4 +12,4 @@ const schema = new mongoose.Schema({
   nickname:{type: String,required: true}
 })
 
-module.exports = mongoose.model('Adminuser',schema)
+module.exports = mongoose.model('AdminUser',schema)

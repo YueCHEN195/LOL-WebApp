@@ -13,7 +13,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
-        <el-button type="danger" @click="$router.push('/adminusers/list')">取消</el-button>
+        <el-button type="danger" @click="$router.push('/admin_users/list')">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -36,18 +36,18 @@ export default {
   methods:{
     async save(){
       if(this.id){
-        await this.$http.put('manage/adminusers/' + this.id,this.model)
+        await this.$http.put('manage/admin_users/' + this.id,this.model)
       }else{
-        await this.$http.post('manage/adminusers',this.model)
+        await this.$http.post('manage/admin_users',this.model)
       }
-      this.$router.push('/adminusers/list')
+      this.$router.push('/admin_users/list')
       this.$message({
         type: 'success',
         message: '保存成功'
       })
     },
     async getModelById(){
-      const res = await this.$http.get('manage/adminusers/' + this.id)
+      const res = await this.$http.get('manage/admin_users/' + this.id)
       this.model = res.data
     },
   },

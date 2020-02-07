@@ -10,11 +10,13 @@
           class="avatar-uploader"
           :action="$http.defaults.baseURL + '/upload/items'"
           :show-file-list="false"
-          :on-success="uploadSuccess"
-          :before-upload="beforeAvatarUpload">
+          :on-success="uploadSuccess"> <!-- :before-upload="beforeAvatarUpload" -->
           <img v-if="model.img" :src="model.img" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
+      </el-form-item>
+      <el-form-item label="物品描述：">
+        <el-input v-model="model.description"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -33,7 +35,8 @@ export default {
     return{
       model:{
         name:'',
-        img:''
+        img:'',
+        description:''
       },
       lists:[]
     }

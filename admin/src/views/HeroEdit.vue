@@ -58,7 +58,7 @@
           </el-form-item>
         </el-tab-pane>
         <el-tab-pane label="技能信息" name="skills">
-          <el-button type="text" @click="model.skills.push({icon:'',name:'',description:'',tips:''})"><i class="el-icon-plus"></i>添加技能</el-button>
+          <el-button type="text" @click="model.skills.push({img:'',name:'',description:'',tips:''})"><i class="el-icon-plus"></i>添加技能</el-button>
           <el-row type="flex" style="flex-wrap:wrap">
             <el-col class="skill-container" :md="12" v-for="(skill, i) in model.skills" :key="i">
               <el-form-item label="名称">
@@ -69,9 +69,9 @@
                   class="avatar-uploader"
                   :action="$http.defaults.baseURL + '/upload/heroes'"
                   :show-file-list="false"
-                  :on-success="res => skill.icon = res.url">
+                  :on-success="res => skill.img = res.url">
                   <!-- :before-upload="beforeAvatarUpload" -->
-                  <img v-if="skill.icon" :src="skill.icon" class="avatar">
+                  <img v-if="skill.img" :src="skill.img" class="avatar">
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>

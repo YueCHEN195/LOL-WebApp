@@ -18,7 +18,7 @@ import Login from '../views/Login.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  {path: '/login',name:'login',component: Login},
+  {path: '/login',name:'login',component: Login, meta:{isPublic: true}},
   {
     path: '/',
     name: 'Main',
@@ -44,15 +44,22 @@ const routes = [
       {path: '/swipers/list',component: SwiperList},
       {path: '/swipers/edit/:id',component: SwiperEdit, props: true},
 
-      {path: '/adminusers/create',component: AdminUserEdit},
-      {path: '/adminusers/list',component: AdminUserList},
-      {path: '/adminusers/edit/:id',component: AdminUserEdit, props: true},
+      {path: '/admin_users/create',component: AdminUserEdit},
+      {path: '/admin_users/list',component: AdminUserList},
+      {path: '/admin_users/edit/:id',component: AdminUserEdit, props: true},
     ]
   },
 ]
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to,from,next) => {
+  if(!to.meta.isPublic && !localStorage.token){
+    return next('/login')
+  }
+  next()
 })
 
 export default router

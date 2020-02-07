@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
     df: {type: Number,required: true}
   },
   skills: [{
-    icon: {type: String},
+    img: {type: String},
     name: {type: String},
     description: {type: String},
     tips:{type: String}

@@ -1,0 +1,65 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "672301",
+      "name": "news",
+      "font_class": "news",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "1282366",
+      "name": "News",
+      "font_class": "News",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "2948364",
+      "name": "装备",
+      "font_class": "sv",
+      "unicode": "e502",
+      "unicode_decimal": 58626
+    },
+    {
+      "icon_id": "5650674",
+      "name": "skill-13",
+      "font_class": "skill-13",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "6220622",
+      "name": "LOL_logo",
+      "font_class": "LOL_logo",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "7781305",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "11840986",
+      "name": "back",
+      "font_class": "back",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "12263056",
+      "name": "news",
+      "font_class": "news1",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    }
+  ]
+}

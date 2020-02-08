@@ -1,16 +1,16 @@
 <template>
   <mt-swipe :auto="4000">
     <mt-swipe-item>
-      <img src="../../assets/1.png">
+      <img src="../assets/1.png">
     </mt-swipe-item>
     <mt-swipe-item>
-      <img src="../../assets/1.png">
+      <img src="../assets/1.png">
     </mt-swipe-item>
     <mt-swipe-item>
-      <img src="../../assets/1.png">
+      <img src="../assets/1.png">
     </mt-swipe-item>
     <mt-swipe-item>
-      <img src="../../assets/1.png">
+      <img src="../assets/1.png">
     </mt-swipe-item>
   </mt-swipe>
 </template>
@@ -29,6 +29,7 @@ export default {
 <style lang="scss">
 .mint-swipe{
   height:11rem !important;
+  margin-bottom: 1rem;
   .mint-swipe-indicators{
     left: 80%;
     transform: translateX(-5%);

@@ -12,6 +12,8 @@ app.use('/public',express.static(__dirname + '/public'))
 
 require('./routes/admin/router.js')(app)
 
+require('./routes/web/router.js')(app)
+
 require('./plugins/db.js')(app)   //连接数据库
 
 app.listen(3000,()=>{

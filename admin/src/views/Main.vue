@@ -1,5 +1,5 @@
 <template>
-<el-container style="height: 100vh;">
+<el-container>
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
     <el-menu router  unique-opened>    <!-- 激活router模式 该模式下会在点el-menu-item的时候把index当作router的path跳转 -->
       <el-submenu index="1">
@@ -64,7 +64,7 @@
       </el-dropdown>
       <span>王小虎</span>
     </el-header>
-    <router-view></router-view>
+    <router-view :key="$router.path"></router-view>
   </el-container>
 </el-container>
 </template>

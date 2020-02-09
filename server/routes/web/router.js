@@ -36,8 +36,11 @@ module.exports = app => {
           from: 'articles',   //注意这个地方是集合名称，不是填模型对象-----mongoose自动根据模型名生成的，模型名单数大写这是负数小写
           localField: '_id',
           foreignField: 'category',
-          as: 'articleList'
+          as: 'articleList',
         }
+      },
+      {
+        $project: {_id: 0,name: 1, articleList: {$slice: ['$articleList',5]}}
       }
     ])
 

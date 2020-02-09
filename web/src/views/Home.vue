@@ -1,25 +1,11 @@
 <template>
 <div>
   <swiper></swiper>
-  <card title="新闻资讯" icon="news1">
-    <div class="card-body">
-      
-      <div class="nav-bar">
-        <div class="nav-item">
-          <router-link to="/" tag="span">新闻</router-link>
-        </div>
-        <div class="nav-item">
-          <router-link to="/123" tag="span">公告</router-link>
-        </div>
-        <div class="nav-item">
-          <router-link to="/333" tag="span">活动</router-link>
-        </div>
-        <div class="nav-item">
-          <router-link to="/333" tag="span">赛事</router-link>
-        </div>
+  <card title="" icon="" categories="[]">
+    <template #body="{category}">
+      <div class="article-list" v-for="(article, i) in category.articleList" :key="i">
       </div>
-
-    </div>
+    </template>
   </card>
 </div>
 </template>
@@ -27,7 +13,7 @@
 
 <script>
 import swiper from '../components/Swiper.vue'
-import card from '../components/Card.vue'
+
 export default {
   data(){
     return {
@@ -36,7 +22,6 @@ export default {
   },
   components: {
     swiper,
-    card
   }
 }
 </script>

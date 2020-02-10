@@ -2,7 +2,7 @@
   <div class="form-container">
     <h1>{{id ? '编辑':'创建'}}英雄</h1>
     <el-form label-width="120px" @submit.native.prevent = "save">
-      <el-tabs value="skills">
+      <el-tabs>
         <el-tab-pane label="基本信息">
           <el-form-item label="英雄名称：">
             <el-input v-model="model.name"></el-input>

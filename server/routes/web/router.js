@@ -23,14 +23,12 @@ module.exports = app => {
   //   res.send(newsList)
   // })
 
-  router.get('/news/list',async(req, res) => {
+  router.get('/article/list',async(req, res) => {
 
     const parent = await Category.findOne({name: 'article'})
 
     const cats = await Category.aggregate([
-
       {$match: {parent: parent._id}},
-
       {
         $lookup: {
           from: 'articles',   //注意这个地方是集合名称，不是填模型对象-----mongoose自动根据模型名生成的，模型名单数大写这是负数小写
@@ -43,10 +41,25 @@ module.exports = app => {
         $project: {_id: 0,name: 1, articleList: {$slice: ['$articleList',5]}}
       }
     ])
-
-
     res.send(cats)
   })
 
+  router.get('/hero/list',async(req, res) => {
+
+    const parent = await Category.findOne({name: 'hero'})
+
+    const cats = await Category.aggregate([
+      {$match: {parent: parent._id}},
+      {
+        $lookup: {
+          from: 'heros',         //注意这个地方是集合名称，不是填模型对象-----mongoose自动根据模型名生成的，模型名单数大写这是负数小写
+          localField: '_id',
+          foreignField: 'categories',
+          as: 'heroList',
+        }
+      }
+    ])
+    res.send(cats)
+  })
   app.use('/web/api',router)
 }

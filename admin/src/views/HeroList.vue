@@ -29,6 +29,7 @@ export default {
     async getLists(){
       const res = await this.$http.get('manage/heroes')
       this.lists = res.data
+      //console.log(this.lists)
     },
     async del(model){
       try{

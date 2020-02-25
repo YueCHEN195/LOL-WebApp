@@ -1,5 +1,8 @@
 <template>
-    <el-table :data="lists">
+  <div>
+  <el-input placeholder="请输入搜索关键字" v-model="keywords" style="width:20rem; padding:1rem;">
+  </el-input>
+    <el-table :data="search.slice((currentPage-1)*pageSize,currentPage*pageSize)">
       <el-table-column prop="img" label="图标">
         <template slot-scope="scope">
           <img :src="scope.row.img" style="height:3rem;">
@@ -16,20 +19,40 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @current-change = "handleCurrentChange"
+      :page-size="pageSize"
+      layout="prev, pager, next"
+      :total="lists.length"
+      :current-page="currentPage">
+    </el-pagination>
+  </div>
 </template>
 
 <script>
 export default {
   data(){
     return {
-      lists: []
+      lists: [],
+      currentPage: 1,
+      pageSize:20,
+      keywords:''
+    }
+  },
+  computed: {
+    search(){
+      return this.lists.filter(item => {
+        return item.name.includes(this.keywords)
+      })
     }
   },
   methods: {
     async getLists(){
       const res = await this.$http.get('manage/heroes')
       this.lists = res.data
-      //console.log(this.lists)
+    },
+    handleCurrentChange(val){
+      this.currentPage = val
     },
     async del(model){
       try{

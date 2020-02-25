@@ -1,11 +1,12 @@
 <template>
-    <el-table :data="lists">
+<div>
+  <el-input placeholder="请输入搜索关键字" v-model="keywords" style="width:20rem; padding:1rem;">
+  </el-input>
+    <el-table :data="search.slice((currentPage-1)*pageSize,currentPage*pageSize)">
       <el-table-column prop="_id" label="ID">
       </el-table-column>
       <el-table-column prop="title" label="标题">
       </el-table-column>
-      <!-- <el-table-column prop="category.name" label="所属分类">
-      </el-table-column> -->
       <el-table-column fixed="right" label="操作">
         <template slot-scope="scope">
           <el-button type="primary" size="small" @click="$router.push('/articles/edit/' + scope.row._id)">编辑</el-button>
@@ -13,19 +14,40 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+      @current-change = "handleCurrentChange"
+      :page-size="pageSize"
+      layout="prev, pager, next"
+      :total="lists.length"
+      :current-page="currentPage">
+    </el-pagination>
+</div>
 </template>
 
 <script>
 export default {
   data(){
     return {
-      lists: []
+      lists: [],
+      currentPage: 1,
+      pageSize:20,
+      keywords:'',
+    }
+  },
+  computed: {
+    search(){
+      return this.lists.filter(item => {
+        return item.title.includes(this.keywords)
+      })
     }
   },
   methods: {
     async getLists(){
       const res = await this.$http.get('manage/articles')
       this.lists = res.data
+    },
+    handleCurrentChange(val){
+      this.currentPage = val
     },
     async del(model){
       try{

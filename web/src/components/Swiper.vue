@@ -4,13 +4,13 @@
       <img src="../assets/1.png">
     </mt-swipe-item>
     <mt-swipe-item>
-      <img src="../assets/1.png">
+      <img src="../assets/2.jpeg">
     </mt-swipe-item>
     <mt-swipe-item>
-      <img src="../assets/1.png">
+      <img src="../assets/3.jpeg">
     </mt-swipe-item>
     <mt-swipe-item>
-      <img src="../assets/1.png">
+      <img src="../assets/4.jpeg">
     </mt-swipe-item>
   </mt-swipe>
 </template>

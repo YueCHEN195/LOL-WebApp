@@ -1,18 +1,18 @@
 <template>
-<div>
-  <div class="nav-bar bg-primary text-white">
-    <div class="nav-item">
-      <router-link to="/" tag="span">首页</router-link>
-    </div>
-    <div class="nav-item">
-      <router-link to="/123" tag="span">攻略中心</router-link>
-    </div>
-    <div class="nav-item">
-      <router-link to="/333" tag="span">赛事中心</router-link>
-    </div>
+  <div id="main-container">
+    <van-tabs v-model="active" 
+    :background="'#db9e3f'" 
+    :color="'#fff'" 
+    :title-inactive-color="'#fff'"
+    :title-active-color="'#fff'">
+      <van-tab title="首页" to="/"></van-tab>
+      <van-tab title="攻略中心" to="/strategy"></van-tab>
+      <van-tab title="赛事中心" to="/game"></van-tab>
+    </van-tabs>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
-  <router-view></router-view>
-</div>
 </template>
 
 
@@ -20,23 +20,14 @@
 
 
 export default {
-  
+  data(){
+    return {
+      active: 0
+    }
+  }
 }
 </script>
 
 
-<style lang = "scss" scoped>
-.nav-bar{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
-  .nav-item{
-    border-bottom: 3px solid transparent;
-  }
-  .router-link-active{
-    border-bottom: 3px solid #fff;
-  }
-}
+<style lang = "scss">
 </style>

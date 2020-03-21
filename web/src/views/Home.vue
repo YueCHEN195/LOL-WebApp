@@ -9,13 +9,18 @@
       </div>
     </template>
   </card>
-  <card title="英雄列表" icon="news1" :categories="heroCats">
+  <card title="英雄列表" icon="news1" :categories="HeroCates">
     <template #body="{category}">
       <div class="hero-container">
         <div class="hero-item" v-for="(hero, i) in category.heroList" :key="i">
           <div><img :src="hero.img"></div>
           <div style="text-align:center">{{hero.title}}</div>
         </div>
+      </div>
+      <div class="show-more" @click="state = !state">
+        <van-icon v-if="state" name="arrow-up" />
+        <van-icon v-if="!state" name="arrow-down" />
+        {{msg}}
       </div>
     </template>
   </card>
@@ -25,15 +30,15 @@
 
 <script>
 import swiper from '../components/Swiper.vue'
-import { Toast } from 'mint-ui'
 import dayjs from 'dayjs'
-
-
 export default {
   data(){
     return {
       articleCats: [],
-      heroCats: []
+      fullHeroCats: [],
+      lessHeroCats:[],
+      msg: '展开',
+      state: false
     }
   },
   components: {
@@ -41,11 +46,7 @@ export default {
   },
   methods: {
     errorMessage(){
-      Toast({
-        message: '网络开小差啦~',
-        position: 'bottom',
-        duration: 5000
-      })
+      
     },
     async getArticleCat(){
       try{
@@ -58,9 +59,14 @@ export default {
     async getHeroCat(){
       try{
         const res = await this.$http.get('hero/list')
-        this.heroCats = res.data
+        this.fullHeroCats = res.data
+        this.lessHeroCats = JSON.parse(JSON.stringify(this.fullHeroCats))
+        for(let i = 0;i < this.lessHeroCats.length;i++){
+          this.lessHeroCats[i].heroList = this.lessHeroCats[i].heroList.slice(0,15)
+        }
       }catch(e){
         this.errorMessage()
+        console.log(e)
       }
     }
   },
@@ -71,6 +77,16 @@ export default {
   filters:{
     timeFilter(val){
       return dayjs(val).format('MM/DD')
+    }
+  },
+  computed: {
+    HeroCates(){
+      if(!this.state){
+        return this.lessHeroCats
+      }else{
+        
+        return this.fullHeroCats
+      }
     }
   },
 }
@@ -97,5 +113,8 @@ export default {
     width:17%;
     margin: 0.3rem;
   }
+}
+.show-more{
+  text-align: center;
 }
 </style>

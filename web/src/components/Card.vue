@@ -1,16 +1,17 @@
 <template>
   <div class="card bg-white">
-    <card-header :title="title" :icon="icon"></card-header>
-    <div class="nav-bar">
-      <div class="nav-item" :class="{active: active == i}" v-for = "(category, i) in categories" :key="i" @click = "$refs.cardSwiper.swiper.slideTo(i)">
-        <span>{{category.name}}</span>
-      </div>
-    </div>
-    <swiper ref="cardSwiper" @slide-change="follow" :options="{autoHeight:true}">
-      <swiper-slide v-for = "(category, i) in categories" :key="i">
-        <slot name="body" :category = "category"></slot>
-      </swiper-slide>
-    </swiper>
+  <card-header :title="title" :icon="icon"></card-header>
+    <van-tabs v-model="active" 
+    :background="'#fff'" 
+    :color="'#db9e3f'" 
+    :swipeable="true" 
+    :lazy-render	= "false" 
+    :animated = "true"
+    :title-active-color="'#db9e3f'">
+      <van-tab :title="category.name" v-for = "(category, i) in categories" :key="i">
+        <slot name="body" :category="category"></slot>
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 
@@ -29,9 +30,7 @@ export default {
     }
   },
   methods:{
-    follow(){
-      this.active = this.$refs.cardSwiper.swiper.realIndex
-    }
+    
   }
 }
 </script>
@@ -42,19 +41,5 @@ export default {
   padding: 0.8rem;
   border-top: 0.01rem solid #d4d9de;
   border-bottom: 0.01rem solid #d4d9de;
-  .nav-bar{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.8rem;
-  border-top: 0.01rem solid #d4d9de;
-  .nav-item{
-    border-bottom: 3px solid transparent;
-  }
-  .active{
-    color:#db9e3f;
-    border-bottom: 3px solid #db9e3f;
-  }
- }
 }
 </style>>

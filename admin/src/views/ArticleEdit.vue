@@ -55,7 +55,7 @@ export default {
     },
     async save(){
       if(this.id){
-        await this.$http.put('manage/articles/' + this.id,this.model)
+        await this.$http.put('manage/articles/' + this.id, this.model)
       }else{
         await this.$http.post('manage/articles',this.model)
       }

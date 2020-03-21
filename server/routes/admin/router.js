@@ -77,6 +77,7 @@ module.exports = app => {
   
   //文件上传路由
   const multer = require('multer')
+  
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       const uploadFolder = __dirname + '/../../public/img/' + req.params.resource
